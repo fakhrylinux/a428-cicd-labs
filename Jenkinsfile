@@ -7,5 +7,11 @@ node {
         stage('Test') {
             sh './jenkins/scripts/test.sh'
         }
+        stage('Deploy') {
+            input message: 'Lanjutkan ke tahap Deploy?' 
+            sh './jenkins/scripts/deliver.sh'
+            sleep(60)
+            sh './jenkins/scripts/kill.sh'
+        }
     }
 }
